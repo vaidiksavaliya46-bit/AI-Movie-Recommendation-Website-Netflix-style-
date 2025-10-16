@@ -98,3 +98,7 @@ AI Movie Recommendation Website.
 | **⚙️ Interests**       | AI, Web Development, Cloud Computing, Machine Learning                   |
 | **📫 Contact**         | [vaidiksavaliya46@gmil.com]                                              |
 
+
+---
+
+“AI + Creativity = The Future of Entertainment.”
