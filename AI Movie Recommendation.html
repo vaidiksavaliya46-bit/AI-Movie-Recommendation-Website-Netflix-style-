@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieV.AI - Your Personal Movie Recommender</title>
+    <link rel="stylesheet" href="AI Movie Recommendation.css">
+    <script src="AI Movie Recommendation.js" defer></script>
+      
+</head>
+<body>
+    <div class="header" id="header">
+        <div class="logo">MovieV.AI</div>
+        <div class="nav">
+            <a onclick="scrollToSection('home')">Home</a>
+            <a onclick="scrollToSection('trending')">Trending</a>
+            <a onclick="scrollToSection('favorites')">Favorites</a>
+            <a onclick="scrollToSection('recommendations')">AI Picks</a>
+            <div class="user-profile" onclick="toggleProfile()">
+                <span>👤</span>
+                <span id="userName">Guest</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
+
+    <div class="profile-modal" id="profileModal">
+        <div class="modal-header">
+            <div class="modal-title">User Profile</div>
+            <button class="close-btn" onclick="closeProfile()">×</button>
+        </div>
+        <div class="profile-section">
+            <div class="profile-label">Username</div>
+            <input type="text" class="profile-input" id="usernameInput" placeholder="Enter your name" value="Guest">
+        </div>
+        <div class="profile-section">
+            <div class="profile-label">Watch History</div>
+            <div class="profile-value" id="watchHistoryDisplay">No movies watched yet</div>
+        </div>
+        <div class="profile-section">
+            <div class="profile-label">Favorite Genres</div>
+            <div class="profile-value" id="favoriteGenresDisplay">Start watching to build preferences</div>
+        </div>
+        <div class="profile-section">
+            <div class="profile-label">Total Recommendations</div>
+            <div class="profile-value" id="totalRecsDisplay">0</div>
+        </div>
+        <button class="btn" onclick="saveProfile()" style="width: 100%; margin-top: 20px;">Save Profile</button>
+    </div>
+
+    <div class="movie-detail-modal" id="movieDetailModal">
+        <div class="movie-detail-header" id="movieDetailHeader">
+            <div class="movie-detail-overlay-content">
+                <div class="movie-detail-title" id="movieDetailTitle"></div>
+                <div class="movie-detail-meta" id="movieDetailMeta"></div>
+            </div>
+        </div>
+        <div class="movie-detail-body">
+            <div class="movie-detail-section">
+                <div class="movie-detail-label">Rating</div>
+                <div class="movie-detail-value">⭐ <span id="movieDetailRating"></span>/10</div>
+            </div>
+            <div class="movie-detail-section">
+                <div class="movie-detail-label">Director</div>
+                <div class="movie-detail-value" id="movieDetailDirector"></div>
+            </div>
+            <div class="movie-detail-section">
+                <div class="movie-detail-label">Genres</div>
+                <div class="movie-detail-value" id="movieDetailGenres"></div>
+            </div>
+            <div class="movie-detail-section">
+                <div class="movie-detail-label">Keywords</div>
+                <div class="movie-detail-value" id="movieDetailKeywords"></div>
+            </div>
+            <div class="movie-detail-actions">
+                <button class="btn" id="favoriteBtn">❤ Add to Favorites</button>
+                <button class="btn-small" onclick="closeMovieDetail()">Close</button>
+            </div>
+        </div>
+    </div>
+    <div class="hero" id="home">
+        <h1>Discover Your Next Favorite Movie</h1>
+        <p>Let AI find the perfect films tailored to your taste. Tell us what you're in the mood for.</p>
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="E.g., action movies like John Wick, sci-fi with time travel...">
+            <button class="btn" onclick="getRecommendations()">Get Recommendations</button>
+        </div>
+    </div>
+    <div class="section" id="trending">
+        <div class="stats-panel">
+            <div class="stat">
+                <div class="stat-value" id="movieCount">0</div>
+                <div class="stat-label">Movies in Database</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="recommendationCount">0</div>
+                <div class="stat-label">Recommendations Given</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="userScore">0%</div>
+                <div class="stat-label">Match Accuracy</div>
+            </div>
+        </div>
+        <h2 class="section-title">🔥 Trending Now</h2>
+        <div class="filters" id="genreFilters"></div>
+        <div class="movie-grid" id="trendingGrid"></div>
+    </div>
+    <div class="section" id="favorites" style="display: none;">
+        <h2 class="section-title">❤️ My Favorites</h2>
+        <div class="movie-grid" id="favoritesGrid"></div>
+    </div>
+    <div class="recommendations" id="recommendations" style="display: none;">
+        <h2 class="section-title">🎯 AI-Powered Recommendations For You</h2>
+        <div id="recommendationsContent"></div>
+    </div>
+</body>
+</html>
